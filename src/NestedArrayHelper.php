@@ -15,7 +15,6 @@ namespace FastFrame\Utility;
  * @package FastFrame\Utility
  */
 class NestedArrayHelper
-	extends ArrayHelper
 {
 	/**
 	 * Returns the value at the given path
@@ -23,16 +22,16 @@ class NestedArrayHelper
 	 * Returns the default value if not specified
 	 *
 	 * @param array        $ary
-	 * @param string|array $nodes
+	 * @param string|array $key
 	 * @param null         $default
 	 * @return array|null
 	 */
-	public static function &get(array &$ary, $nodes, $default = null)
+	public static function &get(array &$ary, $key, $default = null)
 	{
-		$nodes = self::convertToArray($nodes);
+		$key = self::convertToArray($key);
 		$ref   =& $ary;
 		$found = false;
-		while (($node = array_shift($nodes)) !== null) {
+		while (($node = array_shift($key)) !== null) {
 			if (is_array($ref) && array_key_exists($node, $ref)) {
 				$ref   =& $ref[$node];
 				$found = true;
@@ -50,22 +49,22 @@ class NestedArrayHelper
 	 * Sets the value at the given path
 	 *
 	 * @param array        $ary
-	 * @param string|array $nodes
+	 * @param string|array $key
 	 * @param mixed        $value
 	 */
-	public static function set(array &$ary, $nodes, $value)
+	public static function set(array &$ary, $key, $value)
 	{
-		$nodes = self::convertToArray($nodes);
-		while (($node = array_shift($nodes)) !== null) {
+		$key = self::convertToArray($key);
+		while (($node = array_shift($key)) !== null) {
 			if (is_array($ary) && array_key_exists($node, $ary)) {
-				if (empty($nodes)) {
+				if (empty($key)) {
 					$ary[$node] = $value;
 				}
 				else {
 					$ary =& $ary[$node];
 				}
 			}
-			elseif (empty($nodes)) {
+			elseif (empty($key)) {
 				$ary[$node] = $value;
 			}
 			else {
@@ -81,13 +80,13 @@ class NestedArrayHelper
 	 * If you are going to use the value it's better to use NestedArray::get() instead of this function
 	 *
 	 * @param array        $ary
-	 * @param string|array $nodes
+	 * @param string|array $key
 	 * @return bool
 	 */
-	public static function has(array &$ary, $nodes)
+	public static function has(array &$ary, $key)
 	{
-		$nodes = self::convertToArray($nodes);
-		while (($node = array_shift($nodes)) !== null) {
+		$key = self::convertToArray($key);
+		while (($node = array_shift($key)) !== null) {
 			if (is_array($ary) && array_key_exists($node, $ary)) {
 				$ary =& $ary[$node];
 			}
@@ -111,10 +110,10 @@ class NestedArrayHelper
 	{
 		$arys        = func_get_args();
 		$prime       = array_shift($arys);
-		$primeIsHash = self::isAssoc($prime);
+		$primeIsHash = ArrayHelper::isAssoc($prime);
 
 		foreach ($arys as $ary) {
-			if (!$primeIsHash && !self::isAssoc($ary)) {
+			if (!$primeIsHash && !ArrayHelper::isAssoc($ary)) {
 				$prime = array_merge($prime, $ary);
 			}
 			else {
@@ -173,5 +172,16 @@ class NestedArrayHelper
 		}
 
 		return $newAry;
+	}
+
+	/**
+	 * Converts the given nodes into an array if needed
+	 *
+	 * @param string|array $key
+	 * @return array
+	 */
+	protected static function convertToArray($key)
+	{
+		return is_array($key) ? $key : explode('.', $key);
 	}
 }

@@ -8,7 +8,7 @@
 namespace FastFrame\Utility;
 
 /**
- * Utility class for working with arrays
+ * Utility class for working with basic PHP arrays
  *
  * @package FastFrame\Utility
  */
@@ -82,16 +82,5 @@ class ArrayHelper
 		}
 
 		return $values;
-	}
-
-	/**
-	 * Converts the given nodes into an array if needed
-	 *
-	 * @param $nodes
-	 * @return array
-	 */
-	protected static function convertToArray($nodes)
-	{
-		return is_array($nodes) ? $nodes : explode('.', $nodes);
 	}
 }
