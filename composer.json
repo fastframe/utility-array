@@ -1,0 +1,24 @@
+{
+  "name": "fastframe/utility-array",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "keywords": [
+    "FastFrame",
+    "Utility",
+    "Array Helper"
+  ],
+  "authors": [
+    {
+      "name": "David Lundgren",
+      "email": "dlundgren@syberisle.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "FastFrame\\Utility\\": "src"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8"
+  }
+}
