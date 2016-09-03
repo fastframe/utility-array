@@ -23,10 +23,10 @@ class NestedArrayHelper
 	 *
 	 * @param array        $ary
 	 * @param string|array $key
-	 * @param null         $default
+	 * @param null         $alt
 	 * @return array|null
 	 */
-	public static function &get(array &$ary, $key, $default = null)
+	public static function &get(array &$ary, $key, $alt = null)
 	{
 		$key = self::convertToArray($key);
 		$ref   =& $ary;
@@ -42,7 +42,12 @@ class NestedArrayHelper
 			}
 		}
 
-		return $found ? $ref : $default;
+		if ($found) {
+			return $ref;
+		}
+		else {
+			return $alt;
+		}
 	}
 
 	/**

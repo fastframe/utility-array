@@ -35,12 +35,12 @@ class ArrayHelper
 	 *
 	 * @param array      $ary
 	 * @param string     $key
-	 * @param null|mixed $default
+	 * @param null|mixed $alt
 	 * @return mixed
 	 */
-	public static function keyValue(&$ary, $key, $default = null)
+	public static function keyValue(&$ary, $key, $alt = null)
 	{
-		return array_key_exists($key, $ary) ? $ary[$key] : $default;
+		return array_key_exists($key, $ary) ? $ary[$key] : $alt;
 	}
 
 	/**

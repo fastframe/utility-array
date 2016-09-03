@@ -29,7 +29,8 @@ class NestedArrayHelperTest
 
 	public function testGetReturnsWithStringPath()
 	{
-		self::assertEquals('blue birds fly', NestedArrayHelper::get($this->aryTester, 'some.where.over.the.rainbow'));
+		$s = NestedArrayHelper::get($this->aryTester, 'some.where.over.the.rainbow');
+		self::assertEquals('blue birds fly', $s);
 	}
 
 	public function testGetReturnsWithArrayPath()
@@ -48,7 +49,8 @@ class NestedArrayHelperTest
 	public function testGetReturnsDefaultWhenPathNotFound()
 	{
 		$ary = [];
-		self::assertEquals('uh oh', NestedArrayHelper::get($ary, ['some', 'where', 'over', 'the', 'rainbow'], 'uh oh'));
+		$a = NestedArrayHelper::get($ary, ['some', 'where', 'over', 'the', 'rainbow'], 'uh oh');
+		self::assertEquals('uh oh', $a);
 	}
 
 	public function testSetWithStringPath()
