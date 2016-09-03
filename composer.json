@@ -1,7 +1,7 @@
 {
   "name": "fastframe/utility-array",
+  "description" : "FastFrame Array Utilities",
   "license": "MIT",
-  "minimum-stability": "dev",
   "keywords": [
     "FastFrame",
     "Utility",
