@@ -2,6 +2,22 @@
 
 `FastFrame\Utility\ArrayHelper` provides methods for interacting with basic PHP arrays.
 
+### indexPull
+
+Returns a list of values based on the passed in keys.
+
+`ArrayHelper::indexPull($ary, ['id', 'name']);`
+
+Written similarly in PHP
+```php
+$values = [];
+foreach ($keys as $key) {
+    if (array_key_exists($key, $ary)) {
+        $values[$key] = $ary[$key];
+    }
+}
+```
+
 ### isAssoc
 
 Determine if the array is associative or not:
@@ -29,8 +45,8 @@ Retrieve a value from the array by key:
 Non-existent keys return null
 ```php
 $ary = [
-    'ary'=>'a'
-    'bry'=>1
+    'ary' => 'a',
+    'bry' => 1
 ];
 
 FastFrame\Utility\ArrayHelper::keyValue($ary, 'cry');
@@ -40,13 +56,82 @@ FastFrame\Utility\ArrayHelper::keyValue($ary, 'cry');
 A default value can be return instead of null
 ```php
 $ary = [
-    'ary'=>'a'
-    'bry'=>1
+    'ary' => 'a',
+    'bry' => 1
 ];
 
 FastFrame\Utility\ArrayHelper::keyValue($ary, 'cry', 'some');
 //= 'some'
 ```
+
+### methodPull
+
+Calls a method on a list of objects.
+
+`ArrayHelper::methodPull($objects, 'id');`
+
+Written similarly in PHP
+```php
+$values = [];
+foreach ($objects as $key => $object) {
+    $values[$key] = $object->id();
+}
+```
+
+#### Key method
+
+This third argument allows the key to be set by a method call
+
+`ArrayHelper::methodPull($objects, 'name', 'id');`
+
+Written similarly in PHP
+```php
+$values = [];
+foreach ($objects as $key => $object) {
+    $values[$object->id()] = $object->name();
+}
+```
+
+#### Preserving objects
+
+You can pass in `null` as the second argument to have the object returned
+
+`ArrayHelper::methodPull($objects, null, 'id');`
+
+### propertyPull
+
+Returns the property from a list of objects
+
+`ArrayHelper::propertyPull($objects, 'id');`
+
+Written similarly in PHP
+```php
+$values = [];
+foreach ($objects as $key => $object) {
+    $values[$key] = $object->id;
+}
+```
+
+#### Key property
+
+This third argument allows the key to be set by using a nother property
+
+`ArrayHelper::propertyPull($objects, 'name', 'id');`
+
+Written similarly in PHP
+```php
+$values = [];
+foreach ($objects as $key => $object) {
+    $values[$object->id] = $object->name;
+}
+```
+
+#### Preserving objects
+
+You can pass in `null` as the second argument to have the object returned.
+
+`ArrayHelper::propertyPull($objects, null, 'id');`
+
 
 ### pullPrefix
 
