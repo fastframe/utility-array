@@ -131,4 +131,26 @@ class ArrayHelper
 
 		return $values;
 	}
+
+	/**
+	 * Return a string of "key: value;" pairs
+	 *
+	 * NOTE: this currently only works on simple arrays
+	 *
+	 * @param array  $ary            The array to operate on
+	 * @param string $valueSeparator The separator between key and value
+	 * @param string $pairSeparator  The separator between the pairs
+	 * @return string
+	 */
+	public static function toComment(array &$ary,
+									 string $valueSeparator = "=",
+									 string $pairSeparator = "; "
+	): string {
+		$result = '';
+		foreach ($ary as $key => $value) {
+			$result .= "{$key}{$valueSeparator}{$value}{$pairSeparator}";
+		}
+
+		return trim($result, $pairSeparator);
+	}
 }

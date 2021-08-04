@@ -175,3 +175,30 @@ $ary = [
 FastFrame\Utility\ArrayHelper::pushPrefix($ary, 'ff_ua_');
 //= array('ff_ua_one' => 'value #1', 'ff_ua_two' => 'value #2');
 ```
+
+### toComment
+
+Formats the array into `key=value;` pairings
+
+```php
+$ary = [
+    'one' => 'value #1',
+    'two' => 'value #2',
+];
+
+FastFrame\Utility\ArrayHelper::toComment($ary);
+//= 'one=value #1; two=value #2'
+```
+
+Using a different separator between keys & values
+
+```php
+ArrayHelper::toComment($ary, ': ');
+//= 'one: value#1; two: value #2'
+```
+
+Using a different separator between key/value pairs
+```php
+ArrayHelper::toComment($ary, '=', '|');
+//= 'one=value#1|two=value #2'
+```
