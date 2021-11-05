@@ -133,6 +133,20 @@ class ArrayHelper
 	}
 
 	/**
+	 * Determines if just the first argument should be returned.
+	 *
+	 * @param array $args
+	 *
+	 * @return mixed The splat, or first argument if only one
+	 */
+	public static function resolveSplat(array $args)
+	{
+		return count($args) === 1
+			? $args[0]
+			: $args;
+	}
+
+	/**
 	 * Return a string of "key: value;" pairs
 	 *
 	 * NOTE: this currently only works on simple arrays

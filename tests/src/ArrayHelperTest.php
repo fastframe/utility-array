@@ -253,6 +253,30 @@ class ArrayHelperTest
 		);
 	}
 
+	public function testResolveSplatReturnsfull()
+	{
+		self::assertEquals(
+			['test', 'test', 'test'],
+			ArrayHelper::resolveSplat(['test', 'test', 'test'])
+		);
+	}
+
+	public function testResolveSplatReturnsFirst()
+	{
+		self::assertEquals(
+			['test', 'test', 'test'],
+			ArrayHelper::resolveSplat([['test', 'test', 'test']])
+		);
+	}
+
+	public function testResolveSplatReturnsString()
+	{
+		self::assertEquals(
+			'test',
+			ArrayHelper::resolveSplat(['test'])
+		);
+	}
+
 	public function testToCommentDefaults()
 	{
 		$ary = [

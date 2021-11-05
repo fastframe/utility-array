@@ -176,6 +176,19 @@ FastFrame\Utility\ArrayHelper::pushPrefix($ary, 'ff_ua_');
 //= array('ff_ua_one' => 'value #1', 'ff_ua_two' => 'value #2');
 ```
 
+### resolveSplat
+
+Returns an array representing the splat, or just the first argument if only one entry in the splat.
+
+```php
+	function splatted(...$args) {
+		return ArrayHelper::resolveSplat($args);
+	}
+	 
+	splatted('test', 'test', 'test'); //= ['test', 'test', 'test']
+	splatted(['test','test','test']); //= ['test', 'test', 'test']
+```
+
 ### toComment
 
 Formats the array into `key=value;` pairings
