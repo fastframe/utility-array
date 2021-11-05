@@ -29,6 +29,29 @@ class NestedArrayHelperTest
 		]
 	];
 
+	public function testSeparatorChanges()
+	{
+		NestedArrayHelper::setSeparator('/');
+		self::assertEquals(
+			'blue birds fly',
+			NestedArrayHelper::get($this->aryTester, 'some/where/over/the/rainbow')
+		);
+		NestedArrayHelper::setSeparator();
+	}
+
+	public function testSeparatorIsReset()
+	{
+		NestedArrayHelper::nextSeparator('/');
+		self::assertEquals(
+			'blue birds fly',
+			NestedArrayHelper::get($this->aryTester, 'some/where/over/the/rainbow')
+		);
+		self::assertEquals(
+			'blue birds fly',
+			NestedArrayHelper::get($this->aryTester, 'some.where.over.the.rainbow')
+		);
+	}
+
 	public function testGetReturnsWithStringPath()
 	{
 		$s = NestedArrayHelper::get($this->aryTester, 'some.where.over.the.rainbow');

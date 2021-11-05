@@ -7,6 +7,27 @@ When there is a `$key` parameter to one of this classes functions, it may be in 
   * a string in dotted notation `some.where.over.the.rainbow`
   * an array
 
+## Changing the separator
+
+It is possible to change the separator.
+
+#### To permanently change the separator
+```php
+FastFrame\Utility\NestedArrayHelper::setSeparator("/");
+// use some/where/over/the/rainbow and not some.where.over.the.rainbow
+```
+
+#### To temporarily change the separator
+
+This will mark the separator to be removed after any of the calls to the NestedArrayHelper
+
+```php
+FastFrame\Utility\NestedArrayHelper::setNextSeparator("/");
+// the next call will use some/where/over/the/rainbow and not some.where.over.the.rainbow
+// Subsequent calls will continue to use some.where.over.the.rainbow
+```
+
+
 ### get
 
 Returns the value for the key.
